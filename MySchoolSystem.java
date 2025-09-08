@@ -1,116 +1,152 @@
 package Learningconcepts.SchoolConnect;
+
 import java.util.Scanner;
 
 public class MySchoolSystem {
-    String principalname = "narayana";
-    int principalloginpassword = 12345;
-    String TehcherID = "Teach06";
-    int teacherloginpassword = 54321;
-    String Studentname = "Ravi";
-    int studentloginpassword = 11223;
-    String Parentname = "Suresh";
-    int parentloginpassword = 33211;
+    // Role credentials
+    String principalName = "narayana";
+    int principalPassword = 12345;
 
-    /* Non-static method */
-    public void teacherinfo() {
-        Scanner scanner = new Scanner((System.in));
-        System.out.println("Here the details of Teachers In the School");
-        System.out.println(" Details about Teachers Names and what subject they teach");
-        System.out.println("1.Teja , Teaching Subject: English" +
-                "\n2.Divya , Teaching subject: Telugu" +
-                "\n3.Suresh, Teaching subject: Hindi" +
-                "\n4.Ramesh, Teaching subject: Maths" +
-                "\n5.Lakshmi, Teaching subject: Science" +
-                "\n6.Priya, Teaching subject: Social");
-        System.out.println("English Syllabus: "
-                + "\n1. Grammar"
-                + "\n2. Vocabulary"
-                + "\n3. Reading Comprehension"
-                + "\n4. Writing Skills"
-                + "\n Unit lessons");
-        System.out.println("Syllabus completed for the End of the Month Exams ?: "
-                + "\n If completed Please type Yes"
-                + "\n If Not completed Please type No");
-        String syllabusEng = scanner.nextLine();
-        if (syllabusEng == "yes" && syllabusEng.matches("[a-zA-Z]+")) {
-            System.out.print("Syllabus Completed");
+    String teacherID = "Teach06";
+    int teacherPassword = 54321;
+
+    String studentName = "Ravi";
+    int studentPassword = 11223;
+
+    String parentName = "Suresh";
+    int parentPassword = 33211;
+
+    // Non-static method for teacher info
+    public void teacherInfo() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\n📚 Teacher Details:");
+        System.out.println("1. Teja - English\n2. Divya - Telugu\n3. Suresh - Hindi\n4. Ramesh - Maths\n5. Lakshmi - Science\n6. Priya - Social");
+
+        System.out.println("\n📘 English Syllabus:");
+        System.out.println("1. Grammar\n2. Vocabulary\n3. Reading Comprehension\n4. Writing Skills\n5. Unit Lessons");
+
+        System.out.println("\nIs the syllabus completed for end-of-month exams? (Yes/No):");
+        String syllabusStatus = scanner.nextLine();
+
+        if (syllabusStatus.equalsIgnoreCase("yes")) {
+            System.out.println("✅ Syllabus Completed");
         } else {
-            System.out.println("Syllabus Not Completed");
+            System.out.println("❌ Syllabus Not Completed");
         }
-
     }
 
-    /* Static method*/
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        MySchoolSystem system = new MySchoolSystem(); // ✅ object created
+        MySchoolSystem system = new MySchoolSystem();
 
-        System.out.println(" HI Welcome to My School Connect" +
-                "\n Choose the Role to Login: " +
-                "\nPrincipal" +
-                "\nTeachers" +
-                "\nStudent" +
-                "\nParent" +
-                "\nExit");
+        System.out.println("👋 Welcome to MySchoolConnect");
+        System.out.println("Choose your role to login:\nPrincipal\nTeachers\nStudent\nParent\nExit");
+        String role = scanner.nextLine();
 
-        String userinput1 = scanner.nextLine();
-
-        switch (userinput1) {
+        switch (role.toLowerCase()) {
             case "principal":
-                System.out.println("Enter the Principal name");
-                String userinput2 = scanner.nextLine();
+                System.out.println("Enter Principal Name:");
+                String inputPrincipalName = scanner.nextLine();
 
-
-                if (userinput2.equals(system.principalname) && userinput2.matches("[a-zA-Z]+")) {
-                    System.out.println("Name is valid");
+                if (inputPrincipalName.equalsIgnoreCase(system.principalName)) {
+                    System.out.println("✅ Name is valid");
                 } else {
-                    System.err.println("Name is invalid");
-                }
-
-                System.out.println("Enter the Password : ");
-                int principallpasswprd = scanner.nextInt();
-
-                if (principallpasswprd == system.principalloginpassword) {
-                    System.out.println("Login Successful");
-                } else {
-                    System.err.println("Invalid password");
+                    System.err.println("❌ Name is invalid");
                     break;
                 }
-                System.out.println("Do you want to see the Teachers details: Yes/NO ?");
-                String userinput3 = scanner.next();
-                if (userinput3 == "yes" && userinput3.matches("[a-zA-Z]+")) {
-                    system.teacherinfo();
+
+                System.out.println("Enter Password:");
+                int inputPrincipalPassword = scanner.nextInt();
+                scanner.nextLine(); // consume newline
+
+                if (inputPrincipalPassword == system.principalPassword) {
+                    System.out.println("✅ Login Successful");
                 } else {
-                    System.out.println("Exit?");
-                    String exit = scanner.next();
-                    System.out.println("Exited Successfully" + exit);
+                    System.err.println("❌ Invalid Password");
+                    break;
+                }
+                        System.out.println("Do you want to see teacher details? (Yes/No):");
+                        String seeTeachers = scanner.nextLine();
+
+                        if (seeTeachers.equalsIgnoreCase("yes")) {
+                            system.teacherInfo();
+                        } else {
+                            System.out.println("Do you want to update employee resignation data? (Yes/No):");
+                            String updateResignation = scanner.nextLine();
+
+                            if (updateResignation.equalsIgnoreCase("yes")) {
+                                System.out.println("Enter Employee ID:");
+                                int empId = scanner.nextInt();
+                                scanner.nextLine();
+
+                                System.out.println("Enter Resignation Reason:");
+                                String reason = scanner.nextLine();
+
+                                System.out.println("Has 60-day notice period been completed? (Yes/No):");
+                                String notice = scanner.nextLine();
+
+                                System.out.println("Enter Resignation Approval Status (Approved/Pending):");
+                                String status = scanner.nextLine();
+
+                                if (status.equalsIgnoreCase("Approved")) {
+                                    System.out.println("✅ Resignation Approved for Employee ID: " + empId);
+                                } else {
+                                    System.out.println("⏳ Resignation Pending for Employee ID: " + empId);
+                                }
+                            } else {
+                                System.out.println("📌 No resignation updates at this time.");
+                            }
+                        }
+
+            case "teachers":
+                System.out.println("Welcome to Teacher Login");
+
+                System.out.println("Enter Teacher ID:");
+                String inputTeacherID = scanner.nextLine();
+
+                if (inputTeacherID.equals(system.teacherID)) {
+                    System.out.println("✅ Teacher ID is valid");
+                } else {
+                    System.err.println("❌ Invalid Teacher ID");
+                    break;
+                }
+
+                System.out.println("Enter Password:");
+                int inputTeacherPassword = scanner.nextInt();
+                scanner.nextLine();
+
+                if (inputTeacherPassword == system.teacherPassword) {
+                    System.out.println("✅ Login Successful");
+                } else {
+                    System.err.println("❌ Invalid Password");
+                    break;
+                }
+
+                System.out.println("Do you want to see assigned subjects? (Yes/No):");
+                String seeSubjects = scanner.nextLine();
+
+                if (seeSubjects.equalsIgnoreCase("yes")) {
+                    system.teacherInfo();
+                } else {
+                    System.out.println("📌 Subject details not requested.");
                 }
                 break;
-            case "Teachers":
-                System.out.println("Welcome to Teachers Login page ");
 
-                System.out.println("Please Enter the Teachers ID: ");
-                String userinput4 = scanner.next();
+            case "student":
+                System.out.println("Student login feature coming soon...");
+                break;
 
-                if (userinput4 == system.TehcherID && userinput4.matches("[a-zA-Z0-9]+")) {
-                    System.out.println("Teacher ID is valid");
-                } else {
-                    System.err.println("Teacher ID is invalid");
-                }
-                System.out.println("Enter the password : ");
-                int teacherspassword = scanner.nextInt();
-                if (teacherspassword == system.teacherloginpassword) {
-                    System.out.println("Login Sucessful");
-                } else {
-                    System.err.println("Invalid Password");
-                }
-                System.out.println("Do you want to see the Assigned Subjects details: Yes/NO ?");
-                String userinput5 = scanner.next();
-                if (userinput4 == "yes" && userinput4.matches("[a-zA-Z]+")) {
-                    system.teacherinfo();
-                }else {
+            case "parent":
+                System.out.println("Parent login feature coming soon...");
+                break;
 
-                }
+            case "exit":
+                System.out.println("👋 Exiting MySchoolConnect. Have a great day!");
+                break;
+
+            default:
+                System.err.println("❌ Invalid role selected.");
         }
     }
 }
